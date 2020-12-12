@@ -1,4 +1,3 @@
-JAI GANESH JI
 8
 		No. of productions in grammar: 8
 
