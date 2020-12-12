@@ -1,0 +1,6 @@
+5
+X -> Y Z
+Y -> m
+Y -> n
+Y -> null
+Z -> m

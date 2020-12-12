@@ -1,0 +1,9 @@
+8
+EXPR -> TERM EXPRP  
+EXPRP -> + TERM EXPRP   
+EXPRP -> null
+TERM -> FACTOR TERMP
+TERMP -> * FACTOR TERMP
+TERMP -> null
+FACTOR -> ( EXPR )
+FACTOR -> identifier

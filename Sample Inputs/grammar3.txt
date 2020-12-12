@@ -1,0 +1,11 @@
+10
+S -> A B C D E
+A -> a 
+A -> null
+B -> b
+B -> null
+C -> c
+D -> d 
+D -> null
+E -> e
+E -> null

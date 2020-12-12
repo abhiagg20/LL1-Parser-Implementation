@@ -1,0 +1,7 @@
+6
+S -> x y z 
+S -> a B C
+B -> c 
+B -> c d
+C -> e g 
+C -> d f

@@ -1,0 +1,8 @@
+7
+S -> a A B  
+S -> A B   
+S -> null
+A -> a A b
+A -> null
+B -> b B c
+B -> A S

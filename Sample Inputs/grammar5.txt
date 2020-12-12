@@ -1,0 +1,9 @@
+8
+S -> A B
+S -> C
+A -> D 
+A -> a
+A -> null
+B -> b
+C -> null
+D -> d

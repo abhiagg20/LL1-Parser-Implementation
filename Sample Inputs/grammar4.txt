@@ -1,0 +1,7 @@
+6
+S -> B b 
+S -> C d
+B -> a B 
+B -> null
+C -> c C 
+C -> null

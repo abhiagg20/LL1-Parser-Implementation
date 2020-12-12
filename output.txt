@@ -1,0 +1,124 @@
+JAI GANESH JI
+8
+		No. of productions in grammar: 8
+
+		Start Symbol->> E
+
+_______________________________________________________________________________________
+
+
+		Grammar:
+
+		E -> T EP 
+		EP -> + T EP 
+		EP -> null 
+		T -> F TP 
+		TP -> * F TP 
+		TP -> null 
+		F -> ( E ) 
+		F -> id 
+_______________________________________________________________________________________
+
+	FIRST() sets of non-terminals:
+
+	FIRST of E ->>		(  id  
+	FIRST of EP ->>		+  null  
+	FIRST of T ->>		(  id  
+	FIRST of TP ->>		*  null  
+	FIRST of F ->>		(  id  
+
+_______________________________________________________________________________________
+
+	FOLLOW() sets of non-terminals:
+
+	Follow of E ->>		$ ) 
+	Follow of EP ->>		$ ) 
+	Follow of T ->>		+ $ ) 
+	Follow of TP ->>		+ $ ) 
+	Follow of F ->>		* + $ ) 
+_______________________________________________________________________________________
+
+
+				PARSING TABLE
+
+ 	+  	*  	(  	)  	id  	$
+
+E	 -----   -----  E->TEP   -----  E->TEP   -----  
+
+EP	EP->+TEP   -----   -----  EP->null   -----  EP->null  
+
+T	 -----   -----  T->FTP   -----  T->FTP   -----  
+
+TP	TP->null  TP->*FTP   -----  TP->null   -----  TP->null  
+
+F	 -----   -----  F->(E)   -----  F->id   -----  
+
+_______________________________________________________________________________________
+
+	String to be Parsed:
+
+	( id * id ) + id + ( id * ( id + id ) ) 
+_______________________________________________________________________________________
+
+	Steps involved in Parsing:
+
+Stack						INPUT						ACTION
+$ E 				   ->> ( id * id ) + id + ( id * ( id + id ) ) $ 				  ->> E -> T EP 
+$ EP T 				   ->> ( id * id ) + id + ( id * ( id + id ) ) $ 				  ->> T -> F TP 
+$ EP TP F 				   ->> ( id * id ) + id + ( id * ( id + id ) ) $ 				  ->> F -> ( E ) 
+$ EP TP ) E ( 				   ->> ( id * id ) + id + ( id * ( id + id ) ) $ 				  ->> Match
+$ EP TP ) E 				   ->> id * id ) + id + ( id * ( id + id ) ) $ 				  ->> E -> T EP 
+$ EP TP ) EP T 				   ->> id * id ) + id + ( id * ( id + id ) ) $ 				  ->> T -> F TP 
+$ EP TP ) EP TP F 				   ->> id * id ) + id + ( id * ( id + id ) ) $ 				  ->> F -> id 
+$ EP TP ) EP TP id 				   ->> id * id ) + id + ( id * ( id + id ) ) $ 				  ->> Match
+$ EP TP ) EP TP 				   ->> * id ) + id + ( id * ( id + id ) ) $ 				  ->> TP -> * F TP 
+$ EP TP ) EP TP F * 				   ->> * id ) + id + ( id * ( id + id ) ) $ 				  ->> Match
+$ EP TP ) EP TP F 				   ->> id ) + id + ( id * ( id + id ) ) $ 				  ->> F -> id 
+$ EP TP ) EP TP id 				   ->> id ) + id + ( id * ( id + id ) ) $ 				  ->> Match
+$ EP TP ) EP TP 				   ->> ) + id + ( id * ( id + id ) ) $ 				  ->> TP -> null 
+$ EP TP ) EP 				   ->> ) + id + ( id * ( id + id ) ) $ 				  ->> EP -> null 
+$ EP TP ) 				   ->> ) + id + ( id * ( id + id ) ) $ 				  ->> Match
+$ EP TP 				   ->> + id + ( id * ( id + id ) ) $ 				  ->> TP -> null 
+$ EP 				   ->> + id + ( id * ( id + id ) ) $ 				  ->> EP -> + T EP 
+$ EP T + 				   ->> + id + ( id * ( id + id ) ) $ 				  ->> Match
+$ EP T 				   ->> id + ( id * ( id + id ) ) $ 				  ->> T -> F TP 
+$ EP TP F 				   ->> id + ( id * ( id + id ) ) $ 				  ->> F -> id 
+$ EP TP id 				   ->> id + ( id * ( id + id ) ) $ 				  ->> Match
+$ EP TP 				   ->> + ( id * ( id + id ) ) $ 				  ->> TP -> null 
+$ EP 				   ->> + ( id * ( id + id ) ) $ 				  ->> EP -> + T EP 
+$ EP T + 				   ->> + ( id * ( id + id ) ) $ 				  ->> Match
+$ EP T 				   ->> ( id * ( id + id ) ) $ 				  ->> T -> F TP 
+$ EP TP F 				   ->> ( id * ( id + id ) ) $ 				  ->> F -> ( E ) 
+$ EP TP ) E ( 				   ->> ( id * ( id + id ) ) $ 				  ->> Match
+$ EP TP ) E 				   ->> id * ( id + id ) ) $ 				  ->> E -> T EP 
+$ EP TP ) EP T 				   ->> id * ( id + id ) ) $ 				  ->> T -> F TP 
+$ EP TP ) EP TP F 				   ->> id * ( id + id ) ) $ 				  ->> F -> id 
+$ EP TP ) EP TP id 				   ->> id * ( id + id ) ) $ 				  ->> Match
+$ EP TP ) EP TP 				   ->> * ( id + id ) ) $ 				  ->> TP -> * F TP 
+$ EP TP ) EP TP F * 				   ->> * ( id + id ) ) $ 				  ->> Match
+$ EP TP ) EP TP F 				   ->> ( id + id ) ) $ 				  ->> F -> ( E ) 
+$ EP TP ) EP TP ) E ( 				   ->> ( id + id ) ) $ 				  ->> Match
+$ EP TP ) EP TP ) E 				   ->> id + id ) ) $ 				  ->> E -> T EP 
+$ EP TP ) EP TP ) EP T 				   ->> id + id ) ) $ 				  ->> T -> F TP 
+$ EP TP ) EP TP ) EP TP F 				   ->> id + id ) ) $ 				  ->> F -> id 
+$ EP TP ) EP TP ) EP TP id 				   ->> id + id ) ) $ 				  ->> Match
+$ EP TP ) EP TP ) EP TP 				   ->> + id ) ) $ 				  ->> TP -> null 
+$ EP TP ) EP TP ) EP 				   ->> + id ) ) $ 				  ->> EP -> + T EP 
+$ EP TP ) EP TP ) EP T + 				   ->> + id ) ) $ 				  ->> Match
+$ EP TP ) EP TP ) EP T 				   ->> id ) ) $ 				  ->> T -> F TP 
+$ EP TP ) EP TP ) EP TP F 				   ->> id ) ) $ 				  ->> F -> id 
+$ EP TP ) EP TP ) EP TP id 				   ->> id ) ) $ 				  ->> Match
+$ EP TP ) EP TP ) EP TP 				   ->> ) ) $ 				  ->> TP -> null 
+$ EP TP ) EP TP ) EP 				   ->> ) ) $ 				  ->> EP -> null 
+$ EP TP ) EP TP ) 				   ->> ) ) $ 				  ->> Match
+$ EP TP ) EP TP 				   ->> ) $ 				  ->> TP -> null 
+$ EP TP ) EP 				   ->> ) $ 				  ->> EP -> null 
+$ EP TP ) 				   ->> ) $ 				  ->> Match
+$ EP TP 				   ->> $ 				  ->> TP -> null 
+$ EP 				   ->> $ 				  ->> EP -> null 
+$ 				   ->> $ 				  ->> Successfull parsing
+
+
+	RESULT: String Successfully parsed
+
+_______________________________________________________________________________________
